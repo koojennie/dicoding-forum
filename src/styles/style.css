@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #2d3e50;
+}
+
+:root {
+  font-family: 'Google Sans', serif;
+  background: linear-gradient(to right, #ddd6fe, #fbcfe8);
+}
