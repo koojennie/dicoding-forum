@@ -12,7 +12,7 @@ import {
 
 function Navigation({ authUser, onSignOut }) {
   return (
-    <div className="bg-white relative flex max-w-7xl flex-col overflow-hidden px-4 py-4 md:mx-auto md:flex-row md:items-center mb-2">
+    <div className="bg-white relative flex max-w-7xl min-h-16 flex-col overflow-hidden px-4 py-4 md:mx-auto md:flex-row md:items-center mb-2">
       <Link to="/" className="flex items-center whitespace-nowrap text-2xl font-black">
         <span className="mr-2 text-4xl text-primary">
           <MdOutlineForum />

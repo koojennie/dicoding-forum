@@ -53,9 +53,7 @@ function DetailPage() {
           </span>
         </div>
 
-        <div className="mt-5 text-slate-800 leading-relaxed">
-          {threadDetail.body}
-        </div>
+        <div className="mt-5 text-slate-800 leading-relaxed" dangerouslySetInnerHTML={{ __html: threadDetail.body }}/>
 
         <div className="mt-6 flex gap-3">
           <button

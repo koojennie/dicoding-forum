@@ -1,60 +1,82 @@
+// src/states/threads/reducer.js
 import { ActionType } from './action';
 
 const initialState = {
   items: [],
-  categoryFilter: 'all',
+  categoryFilter: null,
 };
 
-export default function threadsReducer(state = initialState, action = {}) {
+function threadsReducer(state = initialState, action = {}) {
   switch (action.type) {
-  case ActionType.RECEIVE_THREADS:
-    return { ...state, items: action.payload.threads };
+    case ActionType.RECEIVE_THREADS:
+      return {
+        ...state,
+        items: action.payload.threads,
+      };
 
-  case ActionType.ADD_THREAD:
-    return { ...state, items: [action.payload.thread, ...state.items] };
+    case ActionType.ADD_THREAD:
+      return {
+        ...state,
+        items: [action.payload.thread, ...state.items],
+      };
 
-  case ActionType.SET_CATEGORY_FILTER:
-    return { ...state, categoryFilter: action.payload.category };
+    case ActionType.SET_CATEGORY_FILTER:
+      return {
+        ...state,
+        categoryFilter: action.payload.category,
+      };
 
-  case ActionType.TOGGLE_UPVOTE_THREAD: {
-    const { threadId, userId } = action.payload;
-    return {
-      ...state,
-      items: state.items.map((t) => {
-        if (t.id !== threadId) return t;
+    case ActionType.TOGGLE_UPVOTE_THREAD: {
+      const { threadId, userId } = action.payload;
 
-        const hasUp = t.upVotesBy.includes(userId);
-        const hasDown = t.downVotesBy.includes(userId);
+      return {
+        ...state,
+        items: state.items.map((thread) => {
+          if (thread.id !== threadId) return thread;
 
-        return {
-          ...t,
-          upVotesBy: hasUp ? t.upVotesBy.filter((id) => id !== userId) : t.upVotesBy.concat(userId),
-          downVotesBy: hasDown ? t.downVotesBy.filter((id) => id !== userId) : t.downVotesBy,
-        };
-      }),
-    };
-  }
+          const hasUp = thread.upVotesBy.includes(userId);
+          const hasDown = thread.downVotesBy.includes(userId);
 
-  case ActionType.TOGGLE_DOWNVOTE_THREAD: {
-    const { threadId, userId } = action.payload;
-    return {
-      ...state,
-      items: state.items.map((t) => {
-        if (t.id !== threadId) return t;
+          return {
+            ...thread,
+            upVotesBy: hasUp
+              ? thread.upVotesBy.filter((id) => id !== userId)
+              : thread.upVotesBy.concat(userId),
+            downVotesBy: hasDown
+              ? thread.downVotesBy.filter((id) => id !== userId)
+              : thread.downVotesBy,
+          };
+        }),
+      };
+    }
 
-        const hasDown = t.downVotesBy.includes(userId);
-        const hasUp = t.upVotesBy.includes(userId);
+    case ActionType.TOGGLE_DOWNVOTE_THREAD: {
+      const { threadId, userId } = action.payload;
 
-        return {
-          ...t,
-          downVotesBy: hasDown ? t.downVotesBy.filter((id) => id !== userId) : t.downVotesBy.concat(userId),
-          upVotesBy: hasUp ? t.upVotesBy.filter((id) => id !== userId) : t.upVotesBy,
-        };
-      }),
-    };
-  }
+      return {
+        ...state,
+        items: state.items.map((thread) => {
+          if (thread.id !== threadId) return thread;
 
-  default:
-    return state;
+          const hasDown = thread.downVotesBy.includes(userId);
+          const hasUp = thread.upVotesBy.includes(userId);
+
+          return {
+            ...thread,
+            downVotesBy: hasDown
+              ? thread.downVotesBy.filter((id) => id !== userId)
+              : thread.downVotesBy.concat(userId),
+            upVotesBy: hasUp
+              ? thread.upVotesBy.filter((id) => id !== userId)
+              : thread.upVotesBy,
+          };
+        }),
+      };
+    }
+
+    default:
+      return state;
   }
 }
+
+export default threadsReducer;

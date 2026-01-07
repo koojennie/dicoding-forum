@@ -31,10 +31,10 @@ function App() {
 
   return (
     <>
-      <Loading />
       <div>
-        <header>
+        <header className="relative">
           <Navigation authUser={authUser} onSignOut={onSignOut} />
+          <Loading />
         </header>
 
         <main>

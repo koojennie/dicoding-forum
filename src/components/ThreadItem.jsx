@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { MdOutlineReply, MdOutlineThumbDown, MdOutlineThumbUp } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { postedAt, truncate } from '../utils/time';
+import { stripHtml } from '../utils/html';
 
 function ThreadItem({ thread, authUserId, onUpvote, onDownvote }) {
   const {
@@ -35,7 +36,7 @@ function ThreadItem({ thread, authUserId, onUpvote, onDownvote }) {
       </header>
 
       <div className="mt-1 text-gray-700">
-        {truncate(body, 140)}
+        {truncate(stripHtml(body, 140))}
       </div>
 
       <footer className="mt-3 flex flex-wrap gap-3 items-center">

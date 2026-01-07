@@ -68,7 +68,7 @@ export function asyncAddComment(threadId, content) {
     }
 
     try {
-      const comment = await api.createComment({ threadId, content });
+      const comment = await api.createComment(threadId, content);
       dispatch(addCommentActionCreator(comment));
     } catch (e) {
       alert(e.message);
