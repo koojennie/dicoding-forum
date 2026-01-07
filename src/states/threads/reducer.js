@@ -1,4 +1,3 @@
-// src/states/threads/reducer.js
 import { ActionType } from './action';
 
 const initialState = {

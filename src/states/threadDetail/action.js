@@ -78,7 +78,6 @@ export function asyncAddComment(threadId, content) {
   };
 }
 
-// votes thread detail optimistic
 export function asyncToggleUpvoteThreadDetail(threadId) {
   return async (dispatch, getState) => {
     dispatch(showLoading());
@@ -97,7 +96,7 @@ export function asyncToggleUpvoteThreadDetail(threadId) {
       else await api.upVoteThread(threadId);
     } catch (e) {
       alert(e.message);
-      dispatch(toggleUpvoteThreadDetailActionCreator(authUser.id)); // rollback
+      dispatch(toggleUpvoteThreadDetailActionCreator(authUser.id)); 
     }
 
     dispatch(hideLoading());
@@ -122,14 +121,13 @@ export function asyncToggleDownvoteThreadDetail(threadId) {
       else await api.downVoteThread(threadId);
     } catch (e) {
       alert(e.message);
-      dispatch(toggleDownvoteThreadDetailActionCreator(authUser.id)); // rollback
+      dispatch(toggleDownvoteThreadDetailActionCreator(authUser.id)); 
     }
 
     dispatch(hideLoading());
   };
 }
 
-// votes comment optimistic
 export function asyncToggleUpvoteComment(threadId, commentId) {
   return async (dispatch, getState) => {
     dispatch(showLoading());
@@ -149,7 +147,7 @@ export function asyncToggleUpvoteComment(threadId, commentId) {
       else await api.upVoteComment(threadId, commentId);
     } catch (e) {
       alert(e.message);
-      dispatch(toggleUpvoteCommentActionCreator({ commentId, userId: authUser.id })); // rollback
+      dispatch(toggleUpvoteCommentActionCreator({ commentId, userId: authUser.id })); 
     }
 
     dispatch(hideLoading());
@@ -175,7 +173,7 @@ export function asyncToggleDownvoteComment(threadId, commentId) {
       else await api.downVoteComment(threadId, commentId);
     } catch (e) {
       alert(e.message);
-      dispatch(toggleDownvoteCommentActionCreator({ commentId, userId: authUser.id })); // rollback
+      dispatch(toggleDownvoteCommentActionCreator({ commentId, userId: authUser.id })); 
     }
 
     dispatch(hideLoading());

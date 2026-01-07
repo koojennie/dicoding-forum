@@ -80,7 +80,6 @@ function DetailPage() {
         </div>
       </header>
 
-      {/* Add comment */}
       <div className="border-t border-slate-200 pt-6">
         <h2 className="text-xl font-bold text-primary">Komentar</h2>
 
@@ -103,7 +102,6 @@ function DetailPage() {
           </button>
         </div>
 
-        {/* comments list */}
         <div className="mt-8 space-y-6">
           {threadDetail.comments.map((c) => {
             const isUp = authUser ? c.upVotesBy.includes(authUser.id) : false;

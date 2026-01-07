@@ -1,10 +1,6 @@
 import { showLoading, hideLoading } from '@dimasmds/react-redux-loading-bar';
 import api from '../../utils/api';
 
-/**
- * Action Types
- * konsisten, scoped, dan mudah dibaca di reducer
- */
 export const ActionType = {
   RECEIVE_THREADS: 'threads/receive',
   ADD_THREAD: 'threads/add',
@@ -14,9 +10,6 @@ export const ActionType = {
   TOGGLE_DOWNVOTE_THREAD: 'threads/toggleDownvote',
 };
 
-/**
- * Action Creators
- */
 export function receiveThreadsActionCreator(threads) {
   return {
     type: ActionType.RECEIVE_THREADS,
@@ -52,11 +45,6 @@ export function toggleDownvoteThreadActionCreator({ threadId, userId }) {
   };
 }
 
-/**
- * Async Actions
- */
-
-// get all threads
 export function asyncReceiveThreads() {
   return async (dispatch) => {
     dispatch(showLoading());
@@ -70,7 +58,6 @@ export function asyncReceiveThreads() {
   };
 }
 
-// create new thread
 export function asyncAddThread({ title, body, category }) {
   return async (dispatch) => {
     dispatch(showLoading());
@@ -84,9 +71,6 @@ export function asyncAddThread({ title, body, category }) {
   };
 }
 
-/**
- * Optimistic Upvote Thread
- */
 export function asyncToggleUpvoteThread(threadId) {
   return async (dispatch, getState) => {
     dispatch(showLoading());
@@ -99,7 +83,6 @@ export function asyncToggleUpvoteThread(threadId) {
       return;
     }
 
-    // optimistic update
     dispatch(
       toggleUpvoteThreadActionCreator({
         threadId,
@@ -118,7 +101,6 @@ export function asyncToggleUpvoteThread(threadId) {
       }
     } catch (e) {
       alert(e.message);
-      // rollback
       dispatch(
         toggleUpvoteThreadActionCreator({
           threadId,
@@ -131,9 +113,6 @@ export function asyncToggleUpvoteThread(threadId) {
   };
 }
 
-/**
- * Optimistic Downvote Thread
- */
 export function asyncToggleDownvoteThread(threadId) {
   return async (dispatch, getState) => {
     dispatch(showLoading());
