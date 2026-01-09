@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint ./src",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "e2e": "cypress run"
   },
   "dependencies": {
     "@dimasmds/react-redux-loading-bar": "^5.0.10",
@@ -31,6 +32,7 @@
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
+    "cypress": "^15.8.2",
     "eslint": "^9.39.2",
     "eslint-config-dicodingacademy": "^0.9.5",
     "eslint-plugin-cypress": "^5.2.1",
