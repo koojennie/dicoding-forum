@@ -59,17 +59,18 @@ describe('Login spec', () => {
   });
 
   it('should display homepage when email and password are correct', () => {
-    // mengisi email
-    cy.get('input[placeholder="Email"]').type('zhanghao@gmail.com');
+    cy.intercept('POST', '**/login').as('loginRequest');
 
-    // mengisi password
+    cy.get('input[placeholder="Email"]').type('zhanghao@gmail.com');
     cy.get('input[placeholder="Password"]').type('zhanghao');
 
-    // menekan tombol Login
-    cy.get('button').contains(/^Login$/).click();
+    cy.contains('button', /^Login$/).click();
 
-    // memverifikasi bahwa elemen yang berada di homepage ditampilkan
-    cy.get('nav').contains(/^Threads$/).should('be.visible');
+    cy.wait('@loginRequest');
+
+    cy.location('pathname').should('eq', '/');
+
+    cy.get('nav').contains('Threads').should('be.visible');
     cy.get('button').contains('Logout').should('be.visible');
   });
 });
