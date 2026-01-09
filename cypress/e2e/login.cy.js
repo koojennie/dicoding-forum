@@ -71,6 +71,6 @@ describe('Login spec', () => {
     cy.location('pathname').should('eq', '/');
 
     cy.get('nav').contains('Threads').should('be.visible');
-    cy.get('button').contains('Logout').should('be.visible');
+    cy.get('nav').contains('Logout').should('be.visible');
   });
 });
