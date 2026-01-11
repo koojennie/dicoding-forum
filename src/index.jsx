@@ -9,8 +9,8 @@ import store from './states/store';
 
 if (import.meta.env?.MODE !== 'production' || process.env.NODE_ENV !== 'production') {
   import('@axe-core/react').then(({ default: axe }) => {
-    axe(React, { createRoot }, 1000)
-  })
+    axe(React, { createRoot }, 1000);
+  });
 };
 
 createRoot(document.getElementById('root')).render(
