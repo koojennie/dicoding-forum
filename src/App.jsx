@@ -37,7 +37,7 @@ function App() {
           <Loading />
         </header>
 
-        <main>
+        <main id="main-content">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/threads/:id" element={<DetailPage />} />

@@ -28,11 +28,11 @@ function ThreadItem({ thread, authUserId, onUpvote, onDownvote }) {
           <span className="font-semibold text-sm">#{category}</span>
         </div>
 
-        <h4 className="mt-3 text-lg text-purple-800 font-bold">
+        <h2 className="mt-3 text-lg text-purple-800 font-bold">
           <Link to={`/threads/${id}`} className="hover:underline">
             {title}
           </Link>
-        </h4>
+        </h2>
       </header>
 
       <div className="mt-1 text-gray-700">
